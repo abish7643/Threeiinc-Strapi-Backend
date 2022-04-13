@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 84
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 168,
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "publishedDate": {
+      "type": "date",
+      "default": "2022-04-01",
+      "required": true
+    },
+    "updatedDate": {
+      "type": "date",
+      "required": true,
+      "default": "2022-04-02"
+    },
+    "bannerImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Published",
+        "For Review",
+        "Draft"
+      ],
+      "required": true,
+      "default": "Draft"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    }
+  }
+}
